@@ -9,12 +9,12 @@ import numpy as np
 import pybullet
 from pybullet_envs.scene_abstract import SingleRobotEmptyScene
 from pybullet_envs.env_bases import MJCFBaseBulletEnv
-from pybullet_envs.robot_pendula import InvertedPendulum
+from pybullet_envs.robot_pendula import InvertedPendulumSwingup
 
 class CartpoleBulletEnv(MJCFBaseBulletEnv):
 
   def __init__(self):
-    self.robot = InvertedPendulum()
+    self.robot = InvertedPendulumSwingup()
     MJCFBaseBulletEnv.__init__(self, self.robot)
     self.stateId = -1
 
