@@ -48,3 +48,8 @@ class CartpoleBulletEnv(MJCFBaseBulletEnv):
 
   def camera_adjust(self):
     self.camera.move_and_look_at(0, 1.2, 1.0, 0, 0, 0.5)
+
+  def render(self, mode='rgb_array', close=False):
+    if mode != "rgb_array":
+      return np.array([])
+    return super().render(mode,close).astype('uint8')
