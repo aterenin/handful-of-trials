@@ -2,3 +2,5 @@
 tags
 *.pyc
 log/
+.vscode*
+*.code-workspace
