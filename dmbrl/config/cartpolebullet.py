@@ -18,7 +18,7 @@ class InvertedPendulumBulletConfigModule:
     NTRAIN_ITERS = 50
     NROLLOUTS_PER_ITER = 1
     PLAN_HOR = 25
-    MODEL_IN, MODEL_OUT = 7, 5
+    MODEL_IN, MODEL_OUT = 6, 4
     GP_NINDUCING_POINTS = 200
 
     def __init__(self):

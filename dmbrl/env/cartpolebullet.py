@@ -57,7 +57,7 @@ class CartpoleBulletEnv(MJCFBaseBulletEnv):
 class InvertedPendulumModified(MJCFBasedRobot):
 	swingup = True
 	def __init__(self):
-    dir_path = os.path.dirname(os.path.realpath(__file__))
+		dir_path = os.path.dirname(os.path.realpath(__file__))
 		MJCFBasedRobot.__init__(self, '%s/assets/inverted_pendulum.xml' % dir_path, 'cart', action_dim=1, obs_dim=4)
 
 	def robot_specific_reset(self, bullet_client):
