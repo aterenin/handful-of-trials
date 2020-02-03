@@ -37,11 +37,11 @@ class CartpoleBulletEnv(MJCFBaseBulletEnv):
     state = self.robot.calc_state()  # sets self.pos_x self.pos_y
     vel_penalty = 0
     if self.robot.swingup:
-      reward = np.cos(self.robot.theta)
+      reward = np.cos(state[1])
       done = np.abs(state[0]) > 4.99
     else:
       reward = 1.0
-      done = np.abs(self.robot.theta) > .2
+      done = np.abs(state[1]) > .2
     self.rewards = [float(reward)]
     self.HUD(state, a, done)
     return state, sum(self.rewards), done, {}
@@ -77,7 +77,7 @@ class InvertedPendulumModified(MJCFBasedRobot):
 		self.slider.set_motor_torque(  100*float(np.clip(a[0], -1, +1)) )
 
 	def calc_state(self):
-		self.theta, theta_dot = self.j1.current_position()
+		theta, theta_dot = self.j1.current_position()
 		x, vx = self.slider.current_position()
 		assert( np.isfinite(x) )
 
@@ -89,16 +89,17 @@ class InvertedPendulumModified(MJCFBasedRobot):
 			print("vx is inf")
 			vx = 0
 
-		if not np.isfinite(self.theta):
+		if not np.isfinite(theta):
 			print("theta is inf")
-			self.theta = 0
+			theta = 0
 
 		if not np.isfinite(theta_dot):
 			print("theta_dot is inf")
 			theta_dot = 0
 
 		return np.array([
-			x, vx,
-			# np.cos(self.theta), np.sin(self.theta),
-			theta_dot, self.theta
+			x, 
+      theta, 
+      vx, 
+      theta_dot
 			])
